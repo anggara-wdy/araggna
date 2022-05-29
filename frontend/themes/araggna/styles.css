@@ -1,5 +1,7 @@
+@import "tailwind.css";
 @import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');
-@import url('@fontsource/comfortaa');    html {
---lumo-font-family: Comfortaa;
+@import url('@fontsource/ubuntu');
 
-    }
+html {
+    font-family: 'Ubuntu', sans-serif!important;
+}
