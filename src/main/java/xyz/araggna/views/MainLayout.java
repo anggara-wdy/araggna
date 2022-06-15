@@ -1,7 +1,6 @@
 package xyz.araggna.views;
 
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 
 public class MainLayout extends Main implements RouterLayout {
@@ -9,21 +8,21 @@ public class MainLayout extends Main implements RouterLayout {
     public MainLayout() {
 
         Header headerLayout = new Header();
-        headerLayout.addClassNames("flex flex-col md:flex-row w-screen h-screen md:h-min pt-12 justify-between fixed");
+        headerLayout.addClassNames("flex flex-row w-full justify-between fixed bottom-0 md:bottom-auto");
 
         Div logoContainerDiv = new Div();
-        logoContainerDiv.addClassNames("w-2/3 px-12");
+        logoContainerDiv.addClassNames("w-0 md:w-2/3 px-12 pt-5 hidden md:flex");
 
         Div navContainerDiv = new Div();
-        navContainerDiv.addClassNames("flex flex-row w-1/3 items-center");
+        navContainerDiv.addClassNames("flex flex-row w-full md:w-1/3 items-center justify-end px-12");
 
         Image logo = new Image("icons/icon.png", "logo");
-        logo.addClassNames("w-20 h-20");
+        logo.addClassNames("w-12");
 
         logoContainerDiv.add(logo);
 
         Nav navLayout = new Nav();
-        navLayout.addClassNames("flex flex-row gap-7 items-center px-12 text-2xl text-white");
+        navLayout.addClassNames("flex flex-row gap-7 items-center  md:py-0 py-5 px-5 text-white bg-[#138ea0] md:w-auto w-full h-full rounded-bl-none rounded-br-none md:rounded-bl-lg md:rounded-br-lg md:rounded-tl-none rounded-tl-lg md:rounded-tr-none rounded-tr-lg ");
 
         navContainerDiv.add(navLayout);
 
@@ -35,7 +34,7 @@ public class MainLayout extends Main implements RouterLayout {
 
         headerLayout.add(logoContainerDiv, navContainerDiv);
 
-        addClassNames("bg-[#FEFEFE] w-screen");
+        addClassNames("bg-[#FEFEFE] w-screen h-full");
 
         add(headerLayout);
     }
