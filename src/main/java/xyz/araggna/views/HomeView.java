@@ -14,11 +14,16 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.ui.LoadMode;
 import xyz.araggna.components.Button;
 
+import java.util.concurrent.TimeUnit;
+
 @Route(value = "", layout = MainLayout.class)
 @PageTitle(value = "Home | Araggna")
 public class HomeView extends FlexLayout implements AfterNavigationObserver {
 
     private Label titleLabel;
+    private Label subTitleLabel;
+    private Label descLabelLabel;
+    private Button contactMeButton;
 
     public HomeView() {
         addClassNames("py-12 px-12 flex flex-row justify-center h-full");
@@ -49,15 +54,15 @@ public class HomeView extends FlexLayout implements AfterNavigationObserver {
         titleLabel.setId("label-name");
         titleLabel.addClassNames("text-5xl font-bold tracking-wide scale-0 transition ease-in-out delay-300 duration-300");
 
-        Label subTitleLabel = new Label("as Java Web Developer");
+        subTitleLabel = new Label("as Java Web Developer");
         subTitleLabel.setId("label-title");
         subTitleLabel.addClassNames("text-3xl tracking-wide scale-0 transition ease-in-out delay-500 duration-300");
 
-        Label descLabelLabel = new Label("Based in Indonesia");
+        descLabelLabel = new Label("Based in Indonesia");
         descLabelLabel.setId("label-location");
         descLabelLabel.addClassNames("text-2xl tracking-wide scale-0 transition ease-in-out delay-700 duration-300");
 
-        Button contactMeButton = new Button();
+        contactMeButton = new Button();
         contactMeButton.setText("Contact Me?");
         contactMeButton.setId("button-contact-me");
         contactMeButton.addClickListener(action -> getUI().ifPresent(ui -> ui.navigate("contact")));
@@ -69,9 +74,11 @@ public class HomeView extends FlexLayout implements AfterNavigationObserver {
 
     @Override
     public void afterNavigation(AfterNavigationEvent afterNavigationEvent) {
-        UI.getCurrent().getPage().addJavaScript("./src/home-layout.js", LoadMode.EAGER);
 
-        UI.getCurrent().getPage().executeJs("animate()");
+        titleLabel.removeClassNames("scale-0");
+        subTitleLabel.removeClassNames("scale-0");
+        descLabelLabel.removeClassNames("scale-0");
+        contactMeButton.removeClassNames("scale-0");
 
     }
 }

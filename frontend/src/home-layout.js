@@ -1,5 +1,6 @@
 function animate() {
     setTimeout(e => {
+
         document.getElementById("label-name").classList.remove("scale-0");
         document.getElementById("label-name").classList.add("scale-100");
 

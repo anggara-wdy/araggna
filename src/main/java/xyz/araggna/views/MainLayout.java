@@ -1,9 +1,12 @@
 package xyz.araggna.views;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.router.RouterLayout;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.router.*;
+import com.vaadin.flow.shared.ui.LoadMode;
 
-public class MainLayout extends Main implements RouterLayout {
+public class MainLayout extends Main implements RouterLayout, AfterNavigationObserver, BeforeLeaveObserver {
 
     public MainLayout() {
 
@@ -17,12 +20,14 @@ public class MainLayout extends Main implements RouterLayout {
         navContainerDiv.addClassNames("flex flex-row w-full md:w-1/3 items-center justify-end px-12");
 
         Image logo = new Image("icons/icon.png", "logo");
-        logo.addClassNames("w-12");
+        logo.addClassNames("w-12 scale-0 transition ease-in-out duration-1000");
+        logo.setId("logo-image");
 
         logoContainerDiv.add(logo);
 
         Nav navLayout = new Nav();
-        navLayout.addClassNames("flex flex-row gap-7 items-center  md:py-0 py-5 px-5 text-white bg-[#138ea0] md:w-auto w-full h-full rounded-bl-none rounded-br-none md:rounded-bl-lg md:rounded-br-lg md:rounded-tl-none rounded-tl-lg md:rounded-tr-none rounded-tr-lg ");
+        navLayout.addClassNames("flex transition ease-in-out duration-1000 flex-row gap-7 items-center  md:py-0 py-5 px-5 text-white bg-[#138ea0] md:w-auto w-full h-full rounded-bl-none rounded-br-none md:rounded-bl-lg md:rounded-br-lg md:rounded-tl-none rounded-tl-lg md:rounded-tr-none rounded-tr-lg ");
+        navLayout.setId("navbar");
 
         navContainerDiv.add(navLayout);
 
@@ -37,5 +42,22 @@ public class MainLayout extends Main implements RouterLayout {
         addClassNames("bg-[#FEFEFE] w-screen h-full");
 
         add(headerLayout);
+
+    }
+
+    @Override
+    public void afterNavigation(AfterNavigationEvent afterNavigationEvent) {
+
+        UI.getCurrent().getPage().addJavaScript("./src/navbar-and-logo.js", LoadMode.EAGER);
+        UI.getCurrent().getPage().executeJs("animated()");
+    }
+
+    @Override
+    public void beforeLeave(BeforeLeaveEvent beforeLeaveEvent) {
+
+
+
+        UI.getCurrent().getPage().executeJs("leaveEvent()");
+
     }
 }
