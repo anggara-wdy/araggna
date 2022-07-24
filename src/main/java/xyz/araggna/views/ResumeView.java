@@ -132,7 +132,7 @@ public class ResumeView extends FlexLayout {
                 new ListItem("Proficient with coding in Java with Vaadin Framework as Frontend, Spring JPA as Backend, and Spring Security.")
         );
 
-        cardExperienceHeadDiv.add(subtitleLabel, unorderedList);
+        cardExperienceHeadDiv.add(subtitleLabel, subtitleLabel2, unorderedList);
 
         cardExperienceDiv.add(cardExperienceHeadDiv);
 
