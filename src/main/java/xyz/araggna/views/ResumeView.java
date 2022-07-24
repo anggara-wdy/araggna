@@ -121,6 +121,9 @@ public class ResumeView extends FlexLayout {
         Label subtitleLabel = new Label("Mowilex Indonesia (2020-2022)");
         subtitleLabel.addClassNames("font-bold");
 
+        Label subtitleLabel2 = new Label("Hyperdata Solusindo Mandiri (2018-2020)");
+        subtitleLabel2.addClassNames("font-bold");
+
         UnorderedList unorderedList = new UnorderedList();
         unorderedList.addClassNames("font-thin list-disc pl-5");
 
